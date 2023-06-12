@@ -1,0 +1,47 @@
+<section class="container">
+  <div>
+    <h2>Parent</h2>
+    <div>
+      <h3>Chosen Activity Type ID - <b>{{ chosenActivityTypeId }}</b></h3>
+      <h3>Activity Types For View</h3>
+      <ul>
+        <li *ngFor="let type of activityTableView">
+          <div>{{ type.activityType.name }}</div>
+          <ul>
+            <li *ngFor="let subtype of type.activitySubtypes">
+              {{ subtype.name }}
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3>Activity Types</h3>
+      <ul>
+        <li *ngFor="let type of activityTypes">
+          <div>{{ type.name }}</div>
+        </li>
+      </ul>
+
+      <h3>Activity Subtypes</h3>
+      <ul>
+        <li *ngFor="let subtype of activitySubtypes">
+          <div>{{ subtype.name }}</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div>
+    <h2>Entity Activity Types</h2>
+    <app-entity-activity-types
+      [activityTypesForView]="activityTableView"
+      [activityTypes]="excludedActivityTypes"
+      [activitySubtypes]="excludedActivitySubtypes"
+      (onChoseActivityType)="chooseActivityType($event)"
+      (onSelectActivityType)="selectActivityType($event)"
+      (onDeleteActivityType)="deleteActivityType($event)"
+      (onSelectActivitySubtype)="selectActivitySubtype($event)"
+      (onDeleteActivitySubtype)="deleteActivitySubtype($event)"
+    ></app-entity-activity-types>
+  </div>
+</section>
+

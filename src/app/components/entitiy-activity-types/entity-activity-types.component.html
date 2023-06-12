@@ -1,0 +1,61 @@
+<div>
+
+  <h3>Activity Types</h3>
+  <input type="text" [formControl]="activityTypesTextFilter">
+  <ul>
+    <li *ngFor="let type of filteredActivityTypes">
+      <div class="flex">
+
+        <div>{{ type.name }}</div>
+        <div>
+          <button (click)="addActivityType(type)">{{ type.id }}</button>
+        </div>
+      </div>
+    </li>
+  </ul>
+
+  <h3>Activity Subtypes</h3>
+  <input type="text" [formControl]="activitySubtypesTextFilter">
+  <ul>
+    <li *ngFor="let subtype of filteredActivitySubtypes">
+      <div class="flex">
+
+        <div>{{ subtype.name }}</div>
+        <div>
+          <button (click)="addActivitySubtype(subtype)">{{ subtype.id }}</button>
+        </div>
+      </div>
+    </li>
+  </ul>
+
+  <table>
+    <!--    Headers   -->
+    <tr>
+      <th>Type Name</th>
+      <th>Description</th>
+      <th>Subtypes</th>
+      <th>Actions</th>
+    </tr>
+
+    <tr *ngFor="let type of activityTypesForView">
+      <td>{{ type.activityType.name }}</td>
+      <td>{{ type.activityType.description }}</td>
+      <td>
+        <ul>
+          <li *ngFor="let subtype of type.activitySubtypes">
+            <div class="flex">
+              <div>{{ subtype.name }}</div>
+              <div>
+                <button (click)="deleteActivitySubtype(subtype.id)">Delete</button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </td>
+      <td>
+        <button (click)="choseActivityType(type.activityType.id)">Add subtype</button>
+        <button (click)="deleteActivityType(type.activityType.id)">Delete</button>
+      </td>
+    </tr>
+  </table>
+</div>
